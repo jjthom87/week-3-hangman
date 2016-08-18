@@ -85,8 +85,12 @@ $(document).ready(function(){
         boardGame();
       };
       if (guessesLeft <= 0) {
+        $('#dynImg').remove();
         $('#losses').text("Losses: " + losses++);
         $('#message').text("You're a total fucking loser");
+        ansPhoto = $('<img id="dynImg">');
+        ansPhoto.attr('src', '../images/loser.jpg').height(300).width(300);
+        $('#picture').append(ansPhoto).fadeIn(2500).fadeOut(2500);
         audioLoser.play();
         boardGame();
       } 
