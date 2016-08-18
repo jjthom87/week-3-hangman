@@ -1,33 +1,16 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Hangman</title>
-        <script type="text/javascript" src="jquery-2.2.4.min.js"></script>
-    </head>
-    <body>
-        <header>Hangman Onkey</header>
-        <h3>Guess What Food This Is...</h3>
-        <div id="word">Word: </div>
-        <p id="guessesLeft">Guesses Left: </p>
-        <p id="guesses">Guesses: </p>
-        <p id="wins">Wins: </p>
-        <p id="losses">Losses: </p>
-        <div id="message"></div>
-        <div id="picture"></div>
-    </body>
-    <script type="text/javascript">
+$(document).ready(function(){
       var thePic = [];
 
       var words = [{
-        word: 'meatloaf', pic: 'meatloaf.jpg', sound: 'meatloaf.m4a'
+        word: 'meatloaf', pic: '../images/meatloaf.jpg', sound: '../sounds/meatloaf.m4a'
       },{
-        word: 'bacon', pic: 'bacon.png', sound: 'bacon.m4a'
+        word: 'bacon', pic: '../images/bacon.png', sound: '../sounds/bacon.m4a'
       },{ 
-        word: 'salad', pic: 'salad.jpg', sound: 'salad.m4a'
+        word: 'salad', pic: '../images/salad.jpg', sound: '../sounds/salad.m4a'
       },{ 
-        word: 'corn', pic: 'corn.jpg', sound: 'corn.m4a'
+        word: 'corn', pic: '../images/corn.jpg', sound: '../sounds/corn.m4a'
       },{
-        word: 'broccoli', pic: 'broccoli.jpg', sound: 'broccoli.m4a'}];
+        word: 'broccoli', pic: '../images/broccoli.jpg', sound: '../sounds/broccoli.m4a'}];
 
         for (var i = 0; i < words.length; i++){
           thePic.push(words[i]);
@@ -58,7 +41,7 @@
             blankWord.push("_")
           }
           audio = new Audio(random.sound);
-          audioLoser = new Audio('loser.m4a');
+          audioLoser = new Audio('../sounds/loser.m4a');
 
 
           $('#word').text("Word: " + blankWord.join(' '));
@@ -87,6 +70,10 @@
         $('#guesses').text("Guesses: " + wrongLetters);
         $('#message').text("Wrong! Guess Again.");
       }
+      // if (userGuess < 'a' || userGuess > 'z'){
+      //   wrongLetters.splice(0,1);
+      //   return alert("That's not a letter");
+      // }
       if (random.word === blankWord.join('')) {
         $('#dynImg').remove();
         $('#wins').text("Wins: " + wins++);
@@ -103,11 +90,12 @@
         audioLoser.play();
         boardGame();
       } 
-      //  if ((guessedLetters.indexOf(userGuess) > -1) || (wrongLetters.indexOf(userGuess) > -1)){
-      //   alert("Letter Already Guessed");
+      // for(var i = 0; i < random.word.length; i++){
+      //    if ((guessedLetters.indexOf(userGuess) != -1) || (wrongLetters.indexOf(userGuess) != -1)){
+      //     return alert("Letter Already Guessed");
+      //   }
       // }
       $('#guessesLeft').text("Guesses left: " + guessesLeft);
 		};
 
-    </script>
-</html>
+});
