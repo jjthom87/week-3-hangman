@@ -16,26 +16,23 @@
         <div id="picture"></div>
     </body>
     <script type="text/javascript">
-      var theWord = [];
       var thePic = [];
 
       var words = [{
-        word: 'meatloaf', pic: 'meatloaf.jpg'
+        word: 'meatloaf', pic: 'meatloaf.jpg', sound: 'meatloaf.m4a'
       },{
-        word: 'bacon', pic: 'bacon.png'
+        word: 'bacon', pic: 'bacon.png', sound: 'bacon.m4a'
       },{ 
-        word: 'salad', pic: 'salad.jpg'
+        word: 'salad', pic: 'salad.jpg', sound: 'salad.m4a'
       },{ 
-        word: 'corn', pic: 'korn.jpeg'
+        word: 'corn', pic: 'corn.jpg', sound: 'corn.m4a'
       },{
-        word: 'broccoli', pic: 'broccoli.jpg'}];
+        word: 'broccoli', pic: 'broccoli.jpg', sound: 'broccoli.m4a'}];
 
         for (var i = 0; i < words.length; i++){
-          theWord.push(words[i].word);
           thePic.push(words[i]);
         }
-      // var randomWord = theWord[Math.floor(Math.random() * theWord.length)];
-      // var splitRandom = randomWord.split('');
+
       var random = thePic[Math.floor(Math.random() * thePic.length)];
       var split = random.word.split('');
   		var blankWord = [];
@@ -44,6 +41,9 @@
   		var guessesLeft = 5;
   		var wins = 0
   		var losses = 0;
+      var audio;
+      var audioLoser;
+      var ansPhoto;
 
  
   			function boardGame(){
@@ -52,22 +52,21 @@
           guessedLetters = [];
           wrongLetters = [];
           guessesLeft = 5;
-          // randomWord = theWord[Math.floor(Math.random() * theWord.length)];
-          // splitRandom = randomWord.split('');
-          // for(var i=0; i < randomWord.length; i++) {
-          //     blankWord.push("_")
-          // }
           random = thePic[Math.floor(Math.random() * thePic.length)];
           split = random.word.split('');
           for (var i=0; i < random.word.length; i++){
             blankWord.push("_")
           }
+          audio = new Audio(random.sound);
+          audioLoser = new Audio('loser.m4a');
+
 
           $('#word').text("Word: " + blankWord.join(' '));
           $('#guessesLeft').text("Guesses left: " + guessesLeft);
           $('#guesses').text("Guesses: " + guessedLetters);
           $('#wins').text("Wins: " + wins);
           $('#losses').text("Losses: " + losses);
+
         }
   			boardGame();
   		
@@ -76,7 +75,7 @@
         if (split.indexOf(userGuess) > -1){
 				for (var i = 0; i < random.word.length; i++){
 					if (random.word[i] == userGuess){
-            $('#message').text("Shit Yea Brah!")
+            $('#message').text("Yea Brah!")
 						blankWord[i] = userGuess;
             $('#word').text("Word: " + blankWord.join(" "));
             guessedLetters.push(userGuess);
@@ -86,19 +85,22 @@
         guessesLeft--;
         wrongLetters.push(userGuess);
         $('#guesses').text("Guesses: " + wrongLetters);
-        $('#message').text("You fucking loser");
+        $('#message').text("Wrong! Guess Again.");
       }
       if (random.word === blankWord.join('')) {
+        $('#dynImg').remove();
         $('#wins').text("Wins: " + wins++);
         $('#message').text("You're a Winner!")
-        var ansPhoto = $('<img>');
+        ansPhoto = $('<img id="dynImg">');
         ansPhoto.attr('src', random.pic).height(300).width(300);
-        $('#picture').append(ansPhoto).fadeIn(3000).fadeOut(3000);
+        $('#picture').append(ansPhoto).fadeIn(2500).fadeOut(2500);
+        audio.play();
         boardGame();
       };
       if (guessesLeft <= 0) {
         $('#losses').text("Losses: " + losses++);
         $('#message').text("You're a total fucking loser");
+        audioLoser.play();
         boardGame();
       } 
       //  if ((guessedLetters.indexOf(userGuess) > -1) || (wrongLetters.indexOf(userGuess) > -1)){
