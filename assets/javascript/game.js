@@ -1,6 +1,5 @@
 $(document).ready(function(){
       var thePic = [];
-
       var words = [{
         word: 'meatloaf', pic: '../images/meatloaf.jpg', sound: '../sounds/meatloaf.m4a'
       },{
@@ -10,12 +9,22 @@ $(document).ready(function(){
       },{ 
         word: 'corn', pic: '../images/corn.jpg', sound: '../sounds/corn.m4a'
       },{
-        word: 'broccoli', pic: '../images/broccoli.jpg', sound: '../sounds/broccoli.m4a'}];
+        word: 'broccoli', pic: '../images/broccoli.jpg', sound: '../sounds/broccoli.m4a'
+      },{
+        word: 'sausage', pic: '../images/sausage.jpg', sound: '../sounds/sausage.m4a'
+      },{
+        word: 'cabbage', pic: '../images/cabbage.jpg', sound: '../sounds/cabbage.m4a'
+      },{
+        word: 'blueberry', pic: '../images/blueberry.jpg', sound: '../sounds/blueberry.m4a'
+      },{
+        word: 'chicken', pic: '../images/chicken.jpg', sound: '../sounds/chicken.m4a'
+      },{
+        word: 'strawberry', pic: '../images/strawberry.jpg', sound: '../sounds/strawberry.m4a'
+      }];
 
-        for (var i = 0; i < words.length; i++){
-          thePic.push(words[i]);
-        }
-
+      for (var i = 0; i < words.length; i++){
+        thePic.push(words[i]);
+      }
       var random = thePic[Math.floor(Math.random() * thePic.length)];
       var split = random.word.split('');
   		var blankWord = [];
@@ -43,13 +52,11 @@ $(document).ready(function(){
           audio = new Audio(random.sound);
           audioLoser = new Audio('../sounds/loser.m4a');
 
-
           $('#word').text("Word: " + blankWord.join(' '));
           $('#guessesLeft').text("Guesses left: " + guessesLeft);
           $('#guesses').text("Guesses: " + guessedLetters);
           $('#wins').text("Wins: " + wins);
           $('#losses').text("Losses: " + losses);
-
         }
   			boardGame();
   		
@@ -77,7 +84,7 @@ $(document).ready(function(){
     if (random.word === blankWord.join('')) {
       $('#dynImg').remove();
       $('#wins').text("Wins: " + wins++);
-      $('#message').text("You're a Winner!")
+      $('#message').text("You got it, now EAT IT!").fadeIn(2500).fadeOut(2500);
       ansPhoto = $('<img id="dynImg">');
       ansPhoto.attr('src', random.pic).height(300).width(300);
       $('#picture').append(ansPhoto).fadeIn(2500).fadeOut(2500);
@@ -87,7 +94,7 @@ $(document).ready(function(){
     if (guessesLeft <= 0) {
       $('#dynImg').remove();
       $('#losses').text("Losses: " + losses++);
-      $('#message').text("You're a total fucking loser");
+      $('#message').text("You lost. Now, you dont eat.").fadeIn(2500).fadeOut(2500);
       ansPhoto = $('<img id="dynImg">');
       ansPhoto.attr('src', '../images/loser.jpg').height(300).width(300);
       $('#picture').append(ansPhoto).fadeIn(2500).fadeOut(2500);
