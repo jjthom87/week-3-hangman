@@ -3,16 +3,32 @@
         <title>Hangman</title>
         <script type="text/javascript" src="../javascript/jquery-2.2.4.min.js"></script>
         <script type="text/javascript" src="../javascript/game.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link href="../css/style.css" rel="stylesheet" />
     </head>
     <body>
-        <header>Hangman Onkey</header>
-        <h3>Guess What Food This Is...</h3>
-        <div id="word">Word: </div>
-        <p id="guessesLeft">Guesses Left: </p>
-        <p id="guesses">Guesses: </p>
-        <p id="wins">Wins: </p>
-        <p id="losses">Losses: </p>
-        <div id="message"></div>
-        <div id="picture"></div>
+        <div class = "container-fluid text-center">
+            <div class = "jumbotron gameTitle">
+                <h1>Hangman Onkey</h1>
+            </div>
+            <div class = "theBody">
+                <h3 id = "top">Guess What Food This Is...</h3>
+                <br>
+                <div class = "well well-sm wordwell center-block">
+                    <div id="word"></div>
+                    <br>
+                </div>
+                <div class = "well well-sm wordwell center-block" id="stats">
+                    <p id="guessesLeft">Guesses Left: </p>
+                    <p id="guesses">Guesses: </p>
+                    <p id="wins">Wins: </p>
+                    <p id="losses">Losses: </p>
+                </div>
+                <div class ="well well-sm wordwell center-block" id="messages">
+                    <div id="message"></div>
+                    <div id="picture"></div>
+                </div>
+            </div>
+        </div>
     </body>
 </html>
