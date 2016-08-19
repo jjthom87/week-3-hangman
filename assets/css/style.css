@@ -22,3 +22,11 @@ body{
 #stats{
 	font-size: 20px;
 }
+#messages{
+	background-color: yellow;
+}
+#message{
+	color:royalblue
+	font-size: 24px;
+	font-weight: bold;
+}

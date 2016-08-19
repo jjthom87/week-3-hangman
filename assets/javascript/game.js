@@ -71,6 +71,7 @@ $(document).ready(function(){
   		for (var i = 0; i < random.word.length; i++){
   			if (random.word[i] == userGuess){
           $('#messages').show();
+          $('#message').show();
           $('#message').text("Yea Brah!")
   				blankWord[i] = userGuess;
           $('#word').text(blankWord.join(" "));
@@ -82,6 +83,7 @@ $(document).ready(function(){
       wrongLetters.push(userGuess);
       $('#guesses').text("Guesses: " + wrongLetters);
       $('#messages').show();
+      $('#message').show();
       $('#message').text("Wrong! Guess Again.");
     }
     if (random.word === blankWord.join('')) {
@@ -105,7 +107,7 @@ $(document).ready(function(){
       $('#picture').append(ansPhoto).fadeIn(2500).fadeOut(2500);
       audioLoser.play();
       boardGame();
-    } 
+    };
     $('#guessesLeft').text("Guesses left: " + guessesLeft);
   };
 });
