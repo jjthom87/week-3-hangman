@@ -1,4 +1,7 @@
+//this states that the functions and variables will be valid
+//once the document loads
 $(document).ready(function(){
+    //
     var thePic = [];
     var words = [{
       word: 'meatloaf', pic: '../images/meatloaf.jpg', sound: '../sounds/meatloaf.m4a'
@@ -26,18 +29,19 @@ $(document).ready(function(){
       thePic.push(words[i]);
     }
     var random = thePic[Math.floor(Math.random() * thePic.length)];
+    //meatloaf...split = ['m', 'e', 'a', 't','l', 'o','a','f'];
     var split = random.word.split('');
-  	var blankWord = [];
-  	var guessedLetters = [];
-    var wrongLetters = [];
-  	var guessesLeft = 5;
-  	var wins = 0
+  	var blankWord;
+  	var guessedLetters;
+    var wrongLetters;
+  	var guessesLeft;
+  	var wins = 0;
   	var losses = 0;
     var audio;
     var audioLoser;
     var ansPhoto;
 
-    $('#messages').hide();
+    // $('#messages').hide();
 
   	function boardGame(){
 
@@ -70,8 +74,6 @@ $(document).ready(function(){
       } else if (split.indexOf(userGuess) > -1){
   		for (var i = 0; i < random.word.length; i++){
   			if (random.word[i] == userGuess){
-          $('#messages').show();
-          $('#message').show();
           $('#message').text("Yea Brah!")
   				blankWord[i] = userGuess;
           $('#word').text(blankWord.join(" "));
@@ -82,14 +84,11 @@ $(document).ready(function(){
       guessesLeft--;
       wrongLetters.push(userGuess);
       $('#guesses').text("Guesses: " + wrongLetters);
-      $('#messages').show();
-      $('#message').show();
       $('#message').text("Wrong! Guess Again.");
     }
     if (random.word === blankWord.join('')) {
       $('#dynImg').remove();
       $('#wins').text("Wins: " + wins++);
-      $('#messages').show();
       $('#message').text("You got it, now EAT IT!").fadeIn(2500).fadeOut(2500);
       ansPhoto = $('<img id="dynImg">');
       ansPhoto.attr('src', random.pic).height(300).width(300);
@@ -100,7 +99,6 @@ $(document).ready(function(){
     if (guessesLeft <= 0) {
       $('#dynImg').remove();
       $('#losses').text("Losses: " + losses++);
-      $('#messages').show();
       $('#message').text("You lost. Now, you dont eat.").fadeIn(2500).fadeOut(2500);
       ansPhoto = $('<img id="dynImg">');
       ansPhoto.attr('src', '../images/loser.jpg').height(300).width(300);
